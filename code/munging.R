@@ -15,12 +15,19 @@ names(x) <- c('name', 'date', 'value')
 # casting
 y <- dcast(x, date ~ name)
 
+# making cumulative calculation
+z <- y
+for (i in 1:(nrow(z)-1)) {
+  z[i + 1, 2:ncol(z)] <- z[i, 2:ncol(z)] + z[i + 1, 2:ncol(z)]
+}
+
 ####################################
 ####################################
 ######### Storing for C3 ###########
 ####################################
 ####################################
-write.csv(y, 'http/idp_data.csv', row.names = F)
+write.csv(y, 'http/data/idp_data.csv', row.names = F)
+write.csv(z, 'http/data/idp_data_cummulative.csv', row.names = F)
 
 
 ####################################
