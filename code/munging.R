@@ -20,9 +20,10 @@ y <- dcast(x, date ~ name)
 
 # calculating totals
 for(i in 1:nrow(y)) {
-  y$Total[i] <- sum(y[i, 2:ncol(y)])
+  y$Average[i] <- rowMeans(y[i, 2:ncol(y)])
 }
 
+y$Average <- ceiling(y$y$Mean)
 
 # loading data for scatter plot
 data <- read.csv('data/output_population.csv')
