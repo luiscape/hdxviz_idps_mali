@@ -12,23 +12,23 @@
   <script src='js/jquery.js'></script>
 
   <!-- Loading Mapbox, used for the popup -->
-  <script src='/js/mapbox.js'></script>
-  <link href='/css/mapbox.css' rel='stylesheet' />
+  <script src='js/mapbox.js'></script>
+  <link href='css/mapbox.css' rel='stylesheet' />
 
   <!-- Load Leaflet -->
-  <link rel="stylesheet" href="/css/leaflet.css" />
-  <script src="/js/leaflet.js"></script>
+  <link rel="stylesheet" href="css/leaflet.css" />
+  <script src="js/leaflet.js"></script>
 
   <!-- Loading c3 + d3 -->
-  <script src='/js/d3.min.js'></script>
-  <script src='/js/c3.js'></script>
-  <link href='/css/c3.css' rel='stylesheet' />
+  <script src='js/d3.min.js'></script>
+  <script src='js/c3.js'></script>
+  <link href='css/c3.css' rel='stylesheet' />
 
   <!-- Loading style sheets that match our current site -->
-  <link rel='stylesheet' id='bean-css'  href='/css/framework.css' type='text/css' media='all' />
-  <link rel='stylesheet' id='main-style-css'  href='/css/style.css' type='text/css' media='all' />
-  <link rel='stylesheet' id='mobile-css'  href='/css/mobile.css' type='text/css' media='all' />
-  <link rel='stylesheet' id='font-awesome-four-css'  href='/css/font-awesome.min.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='bean-css'  href='css/framework.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='main-style-css'  href='css/style.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='mobile-css'  href='css/mobile.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='font-awesome-four-css'  href='css/font-awesome.min.css' type='text/css' media='all' />
 
 
   <style>
@@ -146,12 +146,13 @@ var timeseries = c3.generate({
 
 var mapboxTiles = L.tileLayer('https://{s}.tiles.mapbox.com/v3/reliefweb.im6jg6a0/{z}/{x}/{y}.png', {
     attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>',
-    maxZoom: 7
+    maxZoom: 7,
+    minZoom: 4
 });
 
 var map = L.map('map')
     .addLayer(mapboxTiles)
-    .setView([17.63383, -3.15022], 4);
+    .setView([17.63383, 25.15022], 4);
 
 // creating a popup data
 var popup = new L.Popup({ autoPan: false });
