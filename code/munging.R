@@ -18,12 +18,21 @@ names(x) <- c('name', 'date', 'value')
 # casting
 y <- dcast(x, date ~ name)
 
-# calculating totals
+# calculating averages
 for(i in 1:nrow(y)) {
   y$Average[i] <- rowMeans(y[i, 2:ncol(y)])
 }
 
-y$Average <- ceiling(y$y$Mean)
+y$Average <- ceiling(y$Average)
+
+
+# calculating totals
+for(i in 1:nrow(y)) {
+  y$Total[i] <- sum(y[i, 2:ncol(y)])
+}
+
+total_data <- data.frame(date = y$date, total = y$Total)
+
 
 # loading data for scatter plot
 data <- read.csv('data/output_population.csv')
@@ -35,6 +44,7 @@ data <- read.csv('data/output_population.csv')
 ######### Storing for C3 ###########
 ####################################
 ####################################
+write.csv(total_data, 'http/data/idps_total_data.csv', row.names = F)
 write.csv(y, 'http/data/idp_data_timeseries.csv', row.names = F)
 write.csv(data, 'http/data/idp_data_scatterplot.csv', row.names = F)
 
