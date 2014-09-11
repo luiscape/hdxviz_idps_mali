@@ -2,10 +2,13 @@
 library(reshape2)
 library(ggplot2)
 
+# loading data for time series
 data <- read.csv('data/output_2.csv')
 x <- melt(data)
 
 # cleaning
+x$PCODE <- NULL
+x$Country <- NULL
 x$variable <- sub("X", "", x$variable)
 x$variable <- sub("\\.", "-", x$variable)
 x$variable <- sub("\\.", "-", x$variable)
@@ -20,12 +23,9 @@ for(i in 1:nrow(y)) {
   y$Total[i] <- sum(y[i, 2:ncol(y)])
 }
 
-# making cumulative calculation
-z <- y
-for (i in 1:(nrow(z)-1)) {
-  z[i + 1, 2:ncol(z)] <- z[i, 2:ncol(z)] + z[i + 1, 2:ncol(z)]
-}
 
+# loading data for scatter plot
+data <- read.csv('data/output_population.csv')
 
 
 
@@ -34,8 +34,8 @@ for (i in 1:(nrow(z)-1)) {
 ######### Storing for C3 ###########
 ####################################
 ####################################
-write.csv(y, 'http/data/idp_data.csv', row.names = F)
-write.csv(z, 'http/data/idp_data_cummulative.csv', row.names = F)
+write.csv(y, 'http/data/idp_data_timeseries.csv', row.names = F)
+write.csv(data, 'http/data/idp_data_scatterplot.csv', row.names = F)
 
 
 ####################################
